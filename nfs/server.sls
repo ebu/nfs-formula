@@ -17,7 +17,7 @@ nfs-server-deps:
 
 {# RedHat-based OSes requires to start rpcbind first
     and in some versions there is a bug that it does not start as a dependency #}
-{% if nfs.service_server_dependency %}
+{% if 'service_server_dependency' in nfs and nfs.service_server_dependency %}
 nfs-service-dependency:
   service.running:
     - name: {{ nfs.service_server_dependency }}
